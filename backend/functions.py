@@ -16,3 +16,15 @@ class Clubs(Base):
     recruiting = Column[int](Integer)
 
 
+class Applications(Base):
+    __tablename__ = "applications"
+
+    id = Column[int](Integer, primary_key=True)
+    club_id = Column[int](Integer)
+    roll_no = Column[str](String)
+    why_join = Column[str](String)
+    status = Column[str](String)
+    applied_on = Column[str](String)
+
+Base.metadata.create_all(engine)
+
