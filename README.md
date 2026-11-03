@@ -2,7 +2,15 @@
 
 ## Problem Statement
 
-.........
+A new academic year brings new faces, fresh ambitions, and countless opportunities. But with dozens of clubs competing for attention and hundreds of students eager to join, where does the excitement end and the chaos begin?
+
+The coder searches for a tech club, the dancer dreams of the stage, and the athlete looks for their team. Yet, between scattered announcements, missed deadlines, duplicate applications, limited seats, and endless follow-ups, finding the right club becomes harder than it should be.
+
+While students are left wondering, "Did I get selected?", coordinators are buried in applications, struggling to track candidates and manage fair selections.
+A campus full of connections shouldn't have a recruitment process full of confusion.
+
+The challenge is simple: How can we bring every club, every applicant, and every opportunity under one roof, making recruitment transparent, organized, and fair?
+
 
 ## 1. Who is doing what
 
@@ -11,25 +19,9 @@ Update your own row at every check-in.
 | Day | Partner | What are you doing? |
 |---|---|---|
 | Day 1 | Jiken Pulinbhai Jasoliya | Doing the first 3 Endpoints (endpoints: 1, 2, 8) |
-| Day 1 | Abhishek.N | doing endpoints 4, 9 |
+| Day 1 | Abhishek.N |  |
 | Day 1 | Thanuja | Doing 3rd and 7th end points |
 | Day 1 | Sanghavi |working on 6th and 7th endpoints  |
-
-## 2. Endpoint tracker
-
-Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
-
-| # | Method + path | Built  | Connected to React | Who |
-|---|---|---|---|---|---|
-| E1 |  |  |  |  |
-| E2 |  |  |  |  |
-| E3 |  |  |  |  |
-| E4 |  |  |  |  |
-| E5 |  |  |  |  |
-| E6 |  |  |  |  |
-| E7 |  |  |  |  |
-| E8 |  |  |  |  |
-| E9 |  |  |  |  |
 
 ### flow of the Project Presentation 
 
