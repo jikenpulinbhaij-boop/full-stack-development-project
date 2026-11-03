@@ -34,8 +34,8 @@ Fill in the method and path from your PRD's endpoint table.
 | E2 | GET | /clubs/{clubs.id} | /{clubs.id} |  |  |
 | E3 |  |  |  |  |  |
 | E4 |  |  |  |  |  |
-| E5 | POST | /clubs/{club_id}/applications |  |  |  |
-| E6 | PATCH | /applications/{application_id}/status |  | |  |
+| E5 | POST | /clubs/{club_id}/applications | roll_no, why_join |  |  |
+| E6 | PATCH | /applications/{application_id}/status | status | |  |
 | E7 |  |   |  |  |  |
 | E8 | GET | /students | /{roll_no}/applications |  |  |
 | E9 |  |  |  |  |  |
