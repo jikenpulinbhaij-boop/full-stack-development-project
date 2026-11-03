@@ -33,12 +33,12 @@ Fill in the method and path from your PRD's endpoint table.
 | E1 | GET | /clubs |  |  |  |
 | E2 | GET | /clubs/{clubs.id} | /{clubs.id} |  |  |
 | E3 |post  | /clubs |name , category ,seats,deadline  |  |  |
-| E4 | PATCH  | clubs/{club_id}/recruiting  |  |  |  |
+| E4 | PATCH  | clubs/{club_id}/recruiting  | recruiting  |  |  |
 | E5 | POST | /clubs/{club_id}/applications | roll_no, why_join |  |  |
 | E6 | PATCH | /applications/{application_id}/status | status | |  |
 | E7 |patch |/applications/{applications_id}/withdraw |roll_no |  |  |
 | E8 | GET | /students | /{roll_no}/applications |  |  |
-| E9 | GET |  /summary |  |  |  |
+| E9 | GET |  /summary |NONE  |  |  |
 
 ### flow of the Project Presentation 
 
