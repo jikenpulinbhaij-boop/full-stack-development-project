@@ -30,14 +30,14 @@ Fill in the method and path from your PRD's endpoint table.
 
 | # | Method  | path | Request Body | Success Code | Error Codes |
 |---|---|---|---|---|---|
-| E1 |  |  |  |  |  |
-| E2 |  |  |  |  |  |
+| E1 | GET | /clubs |  |  |  |
+| E2 | GET | /clubs/{clubs.id} | /{clubs.id} |  |  |
 | E3 |  |  |  |  |  |
 | E4 |  |  |  |  |  |
 | E5 |  |  |  |  |  |
 | E6 |  |  |  |  |  |
 | E7 |  |  |  |  |  |
-| E8 |  |  |  |  |  |
+| E8 | GET | /students | /{roll_no}/applications |  |  |
 | E9 |  |  |  |  |  |
 
 ### flow of the Project Presentation 
