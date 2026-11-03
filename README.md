@@ -12,7 +12,7 @@ Update your own row at every check-in.
 |---|---|---|
 | Day 1 | Jiken Pulinbhai Jasoliya | Doing the first 3 Endpoints (endpoints: 1, 2, 8) |
 | Day 1 | Abhishek.N |  |
-| Day 1 | Thanuja |  |
+| Day 1 | Thanuja | Doing 3rd and 7th end points |
 | Day 1 | Sanghavi |  |
 
 ### flow of the Project Presentation 
