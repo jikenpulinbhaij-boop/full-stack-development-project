@@ -26,7 +26,7 @@ Update your own row at every check-in.
 
 ## 2. Endpoint tracker
 
-Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
+Fill in the method and path from your PRD's endpoint table. 
 
 | # | Method  | path | Request Body | Success Code | Error Codes |
 |---|---|---|---|---|---|
