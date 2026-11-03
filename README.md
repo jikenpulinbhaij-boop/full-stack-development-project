@@ -21,7 +21,24 @@ Update your own row at every check-in.
 | Day 1 | Jiken Pulinbhai Jasoliya | Doing the first 3 Endpoints (endpoints: 1, 2, 8) |
 | Day 1 | Abhishek.N | doing endpoints 4, 9  |
 | Day 1 | Thanuja | Doing 3rd and 7th end points |
-| Day 1 | Sanghavi |working on 6th and 7th endpoints  |
+| Day 1 | Sanghavi |working on 5th and 6th endpoints  |
+
+
+## 2. Endpoint tracker
+
+Fill in the method and path from your PRD's endpoint table. 
+
+| # | Method  | path | Request Body | Success Code | Error Codes |
+|---|---|---|---|---|---|
+| E1 | GET | /clubs |  |  |  |
+| E2 | GET | /clubs/{clubs.id} | /{clubs.id} |  |  |
+| E3 |post  | /clubs |name , category ,seats,deadline  |  |  |
+| E4 | PATCH  | clubs/{club_id}/recruiting  |  |  |  |
+| E5 | POST | /clubs/{club_id}/applications | roll_no, why_join |  |  |
+| E6 | PATCH | /applications/{application_id}/status | status | |  |
+| E7 |patch |/applications/{applications_id}/withdraw |roll_no |  |  |
+| E8 | GET | /students | /{roll_no}/applications |  |  |
+| E9 | GET |  /summary |  |  |  |
 
 ### flow of the Project Presentation 
 
