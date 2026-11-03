@@ -1,6 +1,7 @@
 from sqlalchemy import Integer, String, Column, create_engine
 from sqlalchemy.orm import declarative_base
 
+
 DB_PATH = "recruitment.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
 Base = declarative_base()
@@ -21,7 +22,7 @@ class Applications(Base):
 
     id = Column[int](Integer, primary_key=True)
     club_id = Column[int](Integer)
-    roll_no = Column[str](String)
+    roll_no = Column[int](Integer)
     why_join = Column[str](String)
     status = Column[str](String)
     applied_on = Column[str](String)
