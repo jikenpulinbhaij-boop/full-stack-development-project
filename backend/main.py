@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware 
 import E1_2_8
 import E3
 import E4
@@ -7,7 +8,17 @@ import E6
 import E7
 import E9
 
-app = FastAPI()
+app = FastAPI(
+    title="Club Recruitment API",
+    description="Manage clubs and student applications"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins={"http://localhost:5173", "http://127.0.0.1:5173"},
+    allow_methods={"*"},
+    allow_headers={"*"},
+)
 
 @app.get("/clubs")
 def clubs(category=None):
