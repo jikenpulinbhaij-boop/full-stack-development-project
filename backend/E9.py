@@ -1,6 +1,4 @@
-from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from datetime import date
 import functions
 
 def get_summary():
@@ -9,9 +7,7 @@ def get_summary():
     response = []
 
     for club in clubs:
-        applications = session.query(functions.Applications).filter(
-            functions.Applications.club_id == club.id
-        ).all()
+        applications = session.query(functions.Applications).filter(functions.Applications.club_id == club.id ).all()
 
         response.append({
             "club_id": club.id,
