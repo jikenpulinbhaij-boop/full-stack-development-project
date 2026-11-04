@@ -1,6 +1,5 @@
-from sqlalchemy import Integer, String, Column, create_engine
+from sqlalchemy import Integer, String, Column, create_engine , ForeignKey
 from sqlalchemy.orm import declarative_base
-
 
 DB_PATH = "recruitment.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
@@ -9,23 +8,25 @@ Base = declarative_base()
 class Clubs(Base):
     __tablename__ = "clubs"
 
-    id = Column[int](Integer, primary_key=True)
-    name = Column[str](String)
-    category = Column[str](String)
-    seats = Column[int](Integer)
-    deadline = Column[str](String)
-    recruiting = Column[int](Integer)
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    category = Column(String)
+    seats = Column(Integer)
+    deadline = Column(String)
+    recruiting = Column(Integer)
 
 
 class Applications(Base):
     __tablename__ = "applications"
 
-    id = Column[int](Integer, primary_key=True)
-    club_id = Column[int](Integer)
-    roll_no = Column[int](Integer)
-    why_join = Column[str](String)
-    status = Column[str](String)
-    applied_on = Column[str](String)
+    id = Column(Integer, primary_key=True)
+    club_id = Column(Integer,ForeignKey("clubs.id"))
+    roll_no = Column(Integer)
+    why_join = Column(String)
+    status = Column(String)
+    applied_on = Column(String)
 
 Base.metadata.create_all(engine)
+
+
 
