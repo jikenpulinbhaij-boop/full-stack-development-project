@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 from sqlalchemy.orm import Session
 from datetime import datetime
 import functions
@@ -21,5 +20,9 @@ def apply_to_club(club_id, roll_no, why_join):
     session.close()
     return response
     
-=======
->>>>>>> Stashed changes
+def get_active_application_count(roll_no):
+    session = Session(functions.engine)
+    applied = session.query(functions.Applications).filter(functions.Applications.roll_no == roll_no, functions.Applications.status == "applied").count()
+    shortlisted = session.query(functions.Applications).filter(functions.Applications.roll_no == roll_no, functions.Applications.status == "shortlisted").count()
+    session.close()
+    return applied + shortlisted

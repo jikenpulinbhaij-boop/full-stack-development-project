@@ -70,7 +70,7 @@ def recruitment(club_id: int, recruiting: bool):
     return response
 
 @app.post("/clubs/{club_id}/applications")
-def apply(club_id: int, roll_no, why_join):
+def apply(club_id: int, roll_no:int, why_join):
 
     club = E1_2_8.get_club(id=club_id)
 
@@ -119,11 +119,13 @@ def update_status(application_id: int, status):
     if application is None:
         raise HTTPException(status_code=404, detail="Application not found")
 
-    if application["status"] == "selected" or application["status"] == "rejected" or application["status"] == "withdrawn":
-        raise HTTPException(status_code=400, detail="This application cannot be changed")
+    allowed = {"applied": ["shortlisted", "rejected"], "shortlisted": ["selected", "rejected"]}
 
-    if application["status"] == "applied" and status == "selected":
-        raise HTTPException(status_code=400, detail="Application must be shortlisted first")
+    if application["status"] not in allowed:
+        raise HTTPException(status_code=400, detail="This move is not allowed")
+
+    if status not in allowed[application["status"]]:
+        raise HTTPException(status_code=400, detail="This move is not allowed")
 
     if status == "selected":
 

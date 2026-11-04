@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 from sqlalchemy import Integer, String, Column, create_engine , ForeignKey
-=======
-from sqlalchemy import Integer, String, Column, create_engine , foreignKey
->>>>>>> Stashed changes
 from sqlalchemy.orm import declarative_base
 
 DB_PATH = "recruitment.db"
@@ -22,18 +18,10 @@ class Clubs(Base):
 class Applications(Base):
     __tablename__ = "applications"
     id = Column(Integer, primary_key=True)
-<<<<<<< Updated upstream
     club_id = Column(Integer,ForeignKey("clubs.id"))
     roll_no = Column(Integer)
-=======
-    club_id = Column(Integer,foreignKey("club.id"))
-    roll_no = Column(String)
->>>>>>> Stashed changes
     why_join = Column(String)
     status = Column(String)
     applied_on = Column(String)
 
 Base.metadata.create_all(engine)
-
-
-

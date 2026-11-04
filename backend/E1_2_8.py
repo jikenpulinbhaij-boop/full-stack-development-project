@@ -29,6 +29,11 @@ def get_club(id):
     session = Session(functions.engine)
 
     club = session.query(functions.Clubs).filter(functions.Clubs.id == id).first()
+
+    if club is None:         
+        session.close()       
+        return None           
+
     applications = session.query(functions.Applications).filter(functions.Applications.club_id == id).all()
 
     application_list = []
