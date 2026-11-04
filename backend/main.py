@@ -6,11 +6,11 @@ app = FastAPI()
 
 @app.get("/clubs")
 def clubs():
-    return functions.get_all_clubs()
+    return functions.get_clubs()
 
-@app.get("/clubs/{id}")
-def club(id):
-    return functions.get_club(id)
+@app.get("/clubs/{club_id}")
+def club(club_id: int):
+    return functions.get_club(club_id=club_id)
 
 @app.post("/clubs")
 def add_club(name, description, contact, location = None):

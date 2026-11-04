@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session, session
 import functions
-from daytime import datetime
+from datetime import datetime
 
 DB_PATH = "recruitment.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")

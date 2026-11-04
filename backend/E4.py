@@ -19,3 +19,4 @@ def set_recruiting(id, recruiting):
         }
     session.close()
     return response
+
