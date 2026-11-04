@@ -1,10 +1,11 @@
+from sqlalchemy import create_engine
 from sqlalchemy .orm import Session 
 from datetime import date 
-import functions 
+import functions
 
 def set_recruiting(id, recruiting):
-    session = Session(engine)
-    club = session.query(Clubs).filter(Clubs.id == id).first()
+    session = Session(functions.engine)
+    club = session.query(functions.Clubs).filter(functions.Clubs.id == id).first()
     response = None
     if club:
         club.recruiting = recruiting
