@@ -8,9 +8,19 @@ app = FastAPI()
 def clubs():
     return functions.get_clubs()
 
+from fastapi import HTTPException, status
+
 @app.get("/clubs/{club_id}")
 def club(club_id: int):
-    return functions.get_club(club_id=club_id)
+    club_data = functions.get_club(club_id=club_id)
+    
+    if not club_data:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail=f"Club with ID {club_id} not found"
+        )
+        
+    return club_data
 
 @app.post("/clubs")
 def add_club(name, description, contact, location = None):
