@@ -7,6 +7,7 @@ import E5
 import E6
 import E7
 import E9
+from datetime import datetime
 
 app = FastAPI(
     title="Club Recruitment API",
@@ -50,6 +51,11 @@ def add_club(name, category, seats: int, deadline):
 
     if seats < 1 or seats > 30:
         raise HTTPException(status_code=422, detail="Seats must be between 1 and 30")
+
+    try:
+        dt = datetime.strptime(deadline,"%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d %H:%M:%S")
+    except ValueError as v:
+        raise HTTPException(status_code=422, detail="Invalid DateTime Format")
 
     return E3.add_club(name=name, category=category, seats=seats, deadline=deadline)
 

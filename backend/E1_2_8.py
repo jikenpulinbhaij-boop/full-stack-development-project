@@ -4,7 +4,10 @@ import functions
 #E1
 def get_all_clubs(category=None):
     session = Session(functions.engine)
-    clubs = session.query(functions.Clubs).filter(functions.Clubs.category == category).all()
+    if category is None:
+        clubs = session.query(functions.Clubs).all()
+    else:
+        clubs = session.query(functions.Clubs).filter(functions.Clubs.category == category).all()
     response = []
 
     for club in clubs:
