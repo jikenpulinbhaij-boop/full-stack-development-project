@@ -17,7 +17,6 @@ def apply_to_club(club_id, roll_no, why_join):
         "status": application.status,
         "applied_on": application.applied_on
     }
-
     session.close()
     return response
     
