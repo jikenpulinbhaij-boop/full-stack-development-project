@@ -1,6 +1,4 @@
-from sqlalchemy import create_engine
 from sqlalchemy .orm import Session 
-from datetime import date 
 import functions
 
 def set_recruiting(id, recruiting):

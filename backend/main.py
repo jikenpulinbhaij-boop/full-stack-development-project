@@ -1,52 +1,94 @@
-# write your main.py code here
-from fastapi import FastAPI
-import functions
+from fastapi import FastAPI, HTTPException
+import E1_2_8
+import E3
+import E4
+import E5
+import E6
+import E7
+import E9
 
 app = FastAPI()
 
 @app.get("/clubs")
-def clubs():
-    return functions.get_clubs()
+def clubs(category=None):
 
-from fastapi import HTTPException, status
+    if category:
+        if category not in ["technical", "cultural", "sports", "social", "literary"]:
+            raise HTTPException(status_code=422, detail="Invalid category")
+
+    return E1_2_8.get_all_clubs(category=category)
 
 @app.get("/clubs/{club_id}")
 def club(club_id: int):
-    club_data = functions.get_club(club_id=club_id)
-    
-    if not club_data:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
-            detail=f"Club with ID {club_id} not found"
-        )
-        
-    return club_data
+
+    response = E1_2_8.get_club(id=club_id)
+
+    if response is None:
+        raise HTTPException(status_code=404, detail="Club not found")
+
+    return response
 
 @app.post("/clubs")
-def add_club(name, description, contact, location = None):
-    return functions.add_club(name=name, description=description,contact =contact,location=location)
+def add_club(name, category, seats: int, deadline):
 
-@app.patch("/clubs/{id}/recruitment")
-def update_club(id, name=None, description=None, contact=None, location=None):
-    return functions.update_club(id=id, name=name, description=description, contact=contact, location=location)
+    if name == "" or category == "" or deadline == "":
+        raise HTTPException(status_code=422, detail="Fields cannot be empty")
+
+    if category not in ["technical", "cultural", "sports", "social", "literary"]:
+        raise HTTPException(status_code=422, detail="Invalid category")
+
+    if seats < 1 or seats > 30:
+        raise HTTPException(status_code=422, detail="Seats must be between 1 and 30")
+
+    return E3.add_club(name=name, category=category, seats=seats, deadline=deadline)
+
+@app.patch("/clubs/{club_id}/recruitment")
+def recruitment(club_id: int, recruiting: bool):
+
+    response = E4.set_recruiting(id=club_id, recruiting=recruiting)
+
+    if response is None:
+        raise HTTPException(status_code=404, detail="Club not found")
+
+    return response
 
 @app.post("/clubs/{club_id}/applications")
-def add_student(name, email, contact, club_id):
-    return functions.add_student(name=name, email=email, contact=contact, club_id=club_id)
+def apply(club_id: int, roll_no, why_join):
 
-@app.patch("/applications/{application_id}/status")
-def update_student_status(application_id, status):
-    return functions.update_student_status(application_id=application_id, status=status)
+    club = E1_2_8.get_club(id=club_id)
 
-@app.patch("/applications/{application_id}/withdraw")
-def withdraw_application(application_id):
-    return functions.withdraw_application(application_id=application_id)
+    if club is None:
+        raise HTTPException(status_code=404, detail="Club not found")
 
-@app.get("/students/{roll_no}/applications")
-def get_student_applications(roll_no):
-    return functions.get_student_applications(roll_no=roll_no)
+    if roll_no == "" or why_join == "":
+        raise HTTPException(status_code=422, detail="Fields cannot be empty")
 
-@app.get("/clubs/summery")
-def get_club_summary():
-    return functions.get_club_summary()
+    if len(why_join) < 20:
+        raise HTTPException(status_code=422, detail="Reason must be at least 20 characters")
 
+    if club["recruiting"] == 0:
+        raise HTTPException(status_code=400, detail="Recruitment is closed")
+
+    applications = E1_2_8.get_student_applications(roll_no=roll_no)
+
+    for application in applications:
+        if application["club_id"] == club_id:
+
+            if application["status"] == "applied":
+                raise HTTPException(status_code=400, detail="Already applied to this club")
+
+            if application["status"] == "shortlisted":
+                raise HTTPException(status_code=400, detail="Already applied to this club")
+
+            if application["status"] == "selected":
+                raise HTTPException(status_code=400, detail="Already applied to this club")
+
+            if application["status"] == "rejected":
+                raise HTTPException(status_code=400, detail="Already applied to this club")
+
+    active_applications = E5.get_active_application_count(roll_no=roll_no)
+
+    if active_applications >= 3:
+        raise HTTPException(status_code=400, detail="Maximum 3 active applications allowed")
+
+    return E5.apply_to_club(club_id=club_id, roll_no=roll_no, why_join=why_join)

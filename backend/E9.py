@@ -7,16 +7,4 @@ def get_summary():
     response = []
 
     for club in clubs:
-        applications = session.query(functions.Applications).filter(functions.Applications.club_id == club.id ).all()
-
-        response.append({
-            "club_id": club.id,
-            "club_name": club.name,
-            "applied": len([a for a in applications if a.status == "applied"]),
-            "shortlisted": len([a for a in applications if a.status == "shortlisted"]),
-            "selected": len([a for a in applications if a.status == "selected"]),
-            "rejected": len([a for a in applications if a.status == "rejected"])
-        })
-
-    session.close()
-    return response
+        applications = session.query(functions.Applications).filter(functions.Applications.club_id == club.id).all()
