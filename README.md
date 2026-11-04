@@ -22,9 +22,9 @@ Update your own row at every check-in.
 | Day 1 | Abhishek.N | doing endpoints 4, 9  |
 | Day 1 | Thanuja | Doing 3rd and 7th end points |
 | Day 1 | Sanghavi |working on clubs table, 5th and 6th endpoints  |
-| Day 2 | Jiken |Testing the Backend and debugging  |
+| Day 2 | Thanuja |Testing the Backend and debugging  |
 | Day 2 | Sanghavi | working on main.py  |
-| Day 2 | Thanuja | Starting on the frontend  |
+| Day 2 | Jiken | Starting on the frontend  |
 | Day 2 | Abhishek |Starting on the Frontend  |
 
 ## 2. Endpoint tracker
