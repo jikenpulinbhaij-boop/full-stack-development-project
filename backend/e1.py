@@ -1,10 +1,5 @@
-from sqlalchemy.orm import Session, session
+from sqlalchemy.orm import Session
 import functions
-from datetime import datetime
-
-DB_PATH = "recruitment.db"
-engine = create_engine(f"sqlite:///{DB_PATH}")
-session = Session(engine)
 
 def get_clubs():
     session = Session(engine)
