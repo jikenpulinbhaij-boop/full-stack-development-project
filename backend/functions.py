@@ -11,7 +11,6 @@ Base = declarative_base()
 
 class Clubs(Base):
     __tablename__ = "clubs"
-
     id = Column(Integer, primary_key=True)
     name = Column(String)
     category = Column(String)
@@ -22,7 +21,6 @@ class Clubs(Base):
 
 class Applications(Base):
     __tablename__ = "applications"
-
     id = Column(Integer, primary_key=True)
 <<<<<<< Updated upstream
     club_id = Column(Integer,ForeignKey("clubs.id"))
