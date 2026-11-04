@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from sqlalchemy.orm import Session
 from datetime import datetime
 import functions
@@ -21,3 +22,5 @@ def apply_to_club(club_id, roll_no, why_join):
     session.close()
     return response
     
+=======
+>>>>>>> Stashed changes
