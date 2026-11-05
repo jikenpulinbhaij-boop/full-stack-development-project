@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ClubList from "./components/ClubList";
 import MyApplications from "./components/MyApplications";
 import AddClub from "./components/AddClub";
-import ClubItem from "./components/ClubItem";
+import Clubitem from "./components/ClubItem";
 
 
 const API_URL = "http://127.0.0.1:8001";
