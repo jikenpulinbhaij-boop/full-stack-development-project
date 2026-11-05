@@ -22,7 +22,7 @@ app.add_middleware(
 )
 
 @app.get("/clubs")
-def clubs():
+def clubs(category=None):
 
     if category:
         if category not in ["technical", "cultural", "sports", "social", "literary"]:

@@ -5,7 +5,7 @@ import AddClub from "./components/AddClub";
 import Clubitem from "./components/ClubItem";
 
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "http://127.0.0.1:8001";
 function App() {
   const [clubs, setClubs] = useState([]);
   const [applications, setApplications] = useState([]);
@@ -18,8 +18,8 @@ function App() {
   }, []);
 
 function addClub(name, category, seats, deadline) {
-    fetch(`${API_URL}/clubs?name=${name}&category=${category}&seats=${seats}&deadline=${deadline}`, {
-      method: "POST"
+    fetch(`${API_URL}/clubs?name=${name}&category=${category}&seats=${seats}&deadline=${deadline} 00:00:00`, {
+    method: "POST"
     })
       .then(async (response) => {
         const data = await response.json();
