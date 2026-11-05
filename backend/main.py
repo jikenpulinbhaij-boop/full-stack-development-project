@@ -30,6 +30,16 @@ def clubs(category=None):
 
     return E1_2_8.get_all_clubs(category=category)
 
+@app.get("/clubs/summary")
+def club_summary():
+    response = E9.get_summary()
+
+    if response is None:
+        raise HTTPException(status_code=404, detail="Summary not found")
+
+    return response
+
+
 @app.get("/clubs/{club_id}")
 def club(club_id: int):
 
@@ -77,11 +87,14 @@ def apply(club_id: int, roll_no:int, why_join):
     if club is None:
         raise HTTPException(status_code=404, detail="Club not found")
 
-    if roll_no == "" or why_join == "":
-        raise HTTPException(status_code=422, detail="Fields cannot be empty")
 
     if len(why_join) < 20:
         raise HTTPException(status_code=422, detail="Reason must be at least 20 characters")
+    
+    deadline = datetime.strptime(club["deadline"], "%Y-%m-%d %H:%M:%S")
+
+    if deadline < datetime.now():
+        raise HTTPException(status_code=400, detail="Application deadline has passed")
 
     if club["recruiting"] == 0:
         raise HTTPException(status_code=400, detail="Recruitment is closed")
@@ -166,11 +179,6 @@ def student_applications(roll_no: int):
 
     return E1_2_8.get_student_applications(roll_no=roll_no)
 
-
-@app.get("/summary")
-def summary():
-
-    return E9.get_summary()
 
 
 

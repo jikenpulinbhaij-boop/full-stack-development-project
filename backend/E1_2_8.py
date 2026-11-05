@@ -9,9 +9,8 @@ def get_all_clubs(category=None):
     else:
         clubs = session.query(functions.Clubs).filter(functions.Clubs.category == category).all()
     response = []
-
-    for club in clubs:
-        temp_club = {
+    
+    temp_club = {
             "id": club.id,
             "name": club.name,
             "category": club.category,
@@ -19,7 +18,7 @@ def get_all_clubs(category=None):
             "deadline": club.deadline,
             "recruiting": club.recruiting
         }
-        response.append(temp_club)
+    response.append(temp_club)
 
     session.close()
     return response
