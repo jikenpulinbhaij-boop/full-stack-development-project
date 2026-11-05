@@ -36,14 +36,27 @@ function addClub(name, category, seats, deadline) {
 
 
   function toggleRecruitment(id, recruiting) {
-    fetch(API_URL + "/clubs/" + id + "/recruitment?recruiting=" + recruiting, { method: "PATCH" })
-      .then(() => fetch(API_URL + "/clubs"))
-      .then((response) => response.json())
-      .then((data) => setClubs(data));
+    fetch(`${API_URL}/clubs/${id}/recruitment?recruiting=${recruiting}`, {
+    method: "PATCH"
+    })
+      .then(async (response) => {
+        const data = await response.json();
+
+        if (!response.ok) {
+          console.log("API error:", data);
+          return;
+        }
+
+        const res = await fetch(`${API_URL}/clubs`);
+        const clubsData = await res.json();
+        setClubs(clubsData);
+      })
+      .catch((error) => console.log("Fetch error:", error));
+  }
   }
 
   function apply(id, whyJoin) {
-  fetch(API_URL + "/clubs/" + id + "/applications?roll_no=" + rollNo + "&why_join=" + whyJoin, {
+  fetch(`${API_URL}/clubs/${id}/applications?roll_no=${rollNo}&why_join=${whyJoin}`, {
     method: "POST"
   })
     .then(async (response) => {
@@ -54,7 +67,7 @@ function addClub(name, category, seats, deadline) {
         return;
       }
 
-      fetch(API_URL + "/clubs")
+      fetch(`${API_URL}/clubs`  )
         .then((response) => response.json())
         .then((data) => setClubs(data));
     })
@@ -110,5 +123,4 @@ function withdrawApplication(id, roll) {
       <AddClub onAdd={addClub} />
     </>
   );
-}
 export default App;
