@@ -12,11 +12,21 @@ function MyApplications({ applications, onShow, onStatus, onWithdraw }) {
         {applications.map((application) => (
           <li key={application.id}>
             Club {application.club_id} · {application.status}
-            <select value={application.status} onChange={(e) => onStatus(application.id, e.target.value, rollNo)}>
-              {["applied", "shortlisted", "selected", "rejected", "withdrawn"].map((s) => <option key={s}>{s}</option>)}
-            </select>
-                        {application.status === "applied" ? (
-              <button onClick={() => onWithdraw(application.id, rollNo)}>Withdraw</button>
+            {application.status === "applied" ? (
+            <>
+             <button onClick={() => onStatus(application.id, "shortlisted", rollNo)}>Shortlist</button>
+             <button onClick={() => onStatus(application.id, "rejected", rollNo)}>Reject</button>
+            </>
+            ) : null}
+
+            {application.status === "shortlisted" ? (
+            <>
+             <button onClick={() => onStatus(application.id, "selected", rollNo)}>Select</button>
+             <button onClick={() => onStatus(application.id, "rejected", rollNo)}>Reject</button>
+            </>
+            ) : null}
+            {application.status === "applied" ? (
+            <button onClick={() => onWithdraw(application.id, rollNo)}>Withdraw</button>
             ) : null}
           </li>
         ))}
@@ -24,5 +34,6 @@ function MyApplications({ applications, onShow, onStatus, onWithdraw }) {
     </>
   );
 }
+
 
 export default MyApplications;

@@ -5,7 +5,7 @@ import AddClub from "./components/AddClub";
 import ClubItem from "./components/ClubItem";
 
 
-const API_URL = "http://127.0.0.1:8001";
+const API_URL = "http://127.0.0.1:8000";
 function App() {
   const [clubs, setClubs] = useState([]);
   const [applications, setApplications] = useState([]);
@@ -37,7 +37,7 @@ function addClub(name, category, seats, deadline) {
   }
 
   function apply(id, whyJoin) {
-    fetch(API_URL + "/clubs/" + id + "/applications?roll_no=" + rollNo + "&why_join=" + whyJoin, {
+  fetch(API_URL + "/clubs/" + id + "/applications?roll_no=" + rollNo + "&why_join=" + whyJoin, {
     method: "POST"
   })
     .then(async (response) => {
@@ -53,7 +53,7 @@ function addClub(name, category, seats, deadline) {
         .then((data) => setClubs(data));
     })
     .catch((error) => console.log("Fetch error:", error));
-  }
+}
 
 
   function showApplications(roll) {
@@ -101,5 +101,4 @@ function addClub(name, category, seats, deadline) {
     </>
   );
 }
-
 export default App;
