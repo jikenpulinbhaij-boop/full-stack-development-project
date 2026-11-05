@@ -10,7 +10,7 @@ import E9
 app = FastAPI()
 
 @app.get("/clubs")
-def clubs(category=None):
+def clubs():
 
     if category:
         if category not in ["technical", "cultural", "sports", "social", "literary"]:
@@ -92,3 +92,4 @@ def apply(club_id: int, roll_no, why_join):
         raise HTTPException(status_code=400, detail="Maximum 3 active applications allowed")
 
     return E5.apply_to_club(club_id=club_id, roll_no=roll_no, why_join=why_join)
+
