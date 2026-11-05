@@ -5,6 +5,9 @@ def update_application_status(application_id, status):
     session = Session(functions.engine)
 
     application = session.query(functions.Applications).filter(functions.Applications.id == application_id).first()
+    if application is None:
+        session.close()
+        return None
 
     application.status = status
 

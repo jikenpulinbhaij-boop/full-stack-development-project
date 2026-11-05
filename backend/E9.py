@@ -6,7 +6,7 @@ import functions
 def get_summary():
     session = Session(functions.engine)
 
-    summary = session.query(functions.Clubs.name, functions.Applications.status, func.count(functions.Applications.id)).join(functions.Applications).group_by(functions.Clubs.name, functions.Applications.status).all()
+    summary = session.query(functions.Clubs.name, functions.Applications.status, func.count(functions.Applications.id)).outerjoin(functions.Applications).group_by(functions.Clubs.name, functions.Applications.status).all()
 
     response = []
 
