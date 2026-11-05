@@ -18,14 +18,20 @@ function App() {
   }, []);
 
 function addClub(name, category, seats, deadline) {
-    fetch(API_URL + "/clubs?name=" + name + "&category=" + category + "&seats=" + seats + "&deadline=" + deadline, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, category: category, seats: seats, deadline: deadline }),
+    fetch(`${API_URL}/clubs?name=${name}&category=${category}&seats=${seats}&deadline=${deadline}`, {
+      method: "POST"
     })
-      .then(() => fetch(API_URL + "/clubs"))
-      .then((response) => response.json())
-      .then((data) => setClubs(data)); 
+      .then(async (response) => {
+        const data = await response.json();
+
+        if (!response.ok) {
+          console.log("API error:", data);
+          return;
+        }
+
+        setClubs([...clubs, data]);
+      })
+      .catch((error) => console.log("Fetch error:", error));
   }
 
 
@@ -61,18 +67,22 @@ function addClub(name, category, seats, deadline) {
       .then(() => showApplications(roll));
   }
 
-
-  function withdrawApplication(id, roll) {
-    fetch(API_URL + "/applications/" + id + "/withdraw?roll_no=" + roll, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ roll_no: roll }),
+function withdrawApplication(id, roll) {
+    fetch(`${API_URL}/applications/${id}/withdraw?roll_no=${roll}`, {
+      method: "PATCH"
     })
-      .then(() => fetch(API_URL + "/students/" + roll + "/applications"))
-      .then((response) => response.json())
-      .then((data) => setApplications(data)); 
-  }
+      .then(async (response) => {
+        const data = await response.json();
 
+        if (!response.ok) {
+          console.log("API error:", data);
+          return;
+        }
+
+        setApplications(applications.map((application) => (application.id === data.id ? data : application)));
+      })
+      .catch((error) => console.log("Fetch error:", error));
+  }
   return (
     <>
       Roll number <input onChange={(e) => setRollNo(e.target.value)} />
