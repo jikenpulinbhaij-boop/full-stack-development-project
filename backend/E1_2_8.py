@@ -9,8 +9,8 @@ def get_all_clubs(category=None):
     else:
         clubs = session.query(functions.Clubs).filter(functions.Clubs.category == category).all()
     response = []
-    
-    temp_club = {
+    for club in clubs:
+        temp_club = {
             "id": club.id,
             "name": club.name,
             "category": club.category,
