@@ -36,14 +36,23 @@ function addClub(name, category, seats, deadline) {
       .then((data) => setClubs(data));
   }
 
-
   function apply(id, whyJoin) {
     fetch(API_URL + "/clubs/" + id + "/applications?roll_no=" + rollNo + "&why_join=" + whyJoin, {
     method: "POST"
   })
-      .then(() => fetch(API_URL + "/clubs"))
-      .then((response) => response.json())
-      .then((data) => setClubs(data));
+    .then(async (response) => {
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.log("API error:", data);
+        return;
+      }
+
+      fetch(API_URL + "/clubs")
+        .then((response) => response.json())
+        .then((data) => setClubs(data));
+    })
+    .catch((error) => console.log("Fetch error:", error));
   }
 
 
@@ -55,9 +64,21 @@ function addClub(name, category, seats, deadline) {
 
 
   function updateStatus(id, status, roll) {
-    fetch(API_URL + "/applications/" + id + "/status?status=" + status, { method: "PATCH" })
-      .then(() => showApplications(roll));
-  }
+  fetch(API_URL + "/applications/" + id + "/status?status=" + status, {
+    method: "PATCH"
+  })
+    .then(async (response) => {
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.log("API error:", data);
+        return;
+      }
+
+      showApplications(roll);
+    })
+    .catch((error) => console.log("Fetch error:", error));
+}
 
 
   function withdrawApplication(id, roll) {
