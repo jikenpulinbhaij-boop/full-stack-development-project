@@ -17,8 +17,7 @@ function App() {
       .then((data) => setClubs(data));
   }, []);
 
-
-  function addClub(name, category, seats, deadline) {
+function addClub(name, category, seats, deadline) {
     fetch(API_URL + "/clubs?name=" + name + "&category=" + category + "&seats=" + seats + "&deadline=" + deadline, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -26,7 +25,7 @@ function App() {
     })
       .then(() => fetch(API_URL + "/clubs"))
       .then((response) => response.json())
-      .then((data) => setClubs(data));
+      .then((data) => setClubs(data)); 
   }
 
 
@@ -64,11 +63,14 @@ function App() {
 
 
   function withdrawApplication(id, roll) {
-    fetch(API_URL + "/applications/" + id + "/withdraw", { method: "PATCH" })
-      .then(() => showApplications(roll))
-      .then(() => fetch(API_URL + "/clubs"))
+    fetch(API_URL + "/applications/" + id + "/withdraw?roll_no=" + roll, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ roll_no: roll }),
+    })
+      .then(() => fetch(API_URL + "/students/" + roll + "/applications"))
       .then((response) => response.json())
-      .then((data) => setClubs(data));
+      .then((data) => setApplications(data)); 
   }
 
   return (

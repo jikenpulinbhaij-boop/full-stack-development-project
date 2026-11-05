@@ -15,7 +15,9 @@ function MyApplications({ applications, onShow, onStatus, onWithdraw }) {
             <select value={application.status} onChange={(e) => onStatus(application.id, e.target.value, rollNo)}>
               {["applied", "shortlisted", "selected", "rejected", "withdrawn"].map((s) => <option key={s}>{s}</option>)}
             </select>
-            <button onClick={() => onWithdraw(application.id, rollNo)}>Withdraw</button>
+                        {application.status === "applied" ? (
+              <button onClick={() => onWithdraw(application.id, rollNo)}>Withdraw</button>
+            ) : null}
           </li>
         ))}
       </ul>
