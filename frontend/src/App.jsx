@@ -5,7 +5,7 @@ import AddClub from "./components/AddClub";
 import Clubitem from "./components/ClubItem";
 
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "http://127.0.0.1:8001";
 function App() {
   const [clubs, setClubs] = useState([]);
   const [applications, setApplications] = useState([]);
