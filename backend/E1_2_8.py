@@ -18,7 +18,8 @@ def get_all_clubs(category=None):
             "deadline": club.deadline,
             "recruiting": club.recruiting
         }
-    response.append(temp_club)
+        
+        response.append(temp_club)
 
     session.close()
     return response

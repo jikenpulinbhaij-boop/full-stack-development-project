@@ -22,7 +22,7 @@ app.add_middleware(
 )
 
 @app.get("/clubs")
-def clubs():
+def clubs(category=None):
 
     if category:
         if category not in ["technical", "cultural", "sports", "social", "literary"]:
@@ -67,7 +67,7 @@ def add_club(name, category, seats: int, deadline):
     except ValueError as v:
         raise HTTPException(status_code=422, detail="Invalid DateTime Format")
 
-    return E3.add_club(name=name, category=category, seats=seats, deadline=deadline)
+    return E3.add_club(name=name, category=category, seats=seats, deadline=dt)
 
 @app.patch("/clubs/{club_id}/recruitment")
 def recruitment(club_id: int, recruiting: bool):
@@ -86,6 +86,9 @@ def apply(club_id: int, roll_no:int, why_join):
 
     if club is None:
         raise HTTPException(status_code=404, detail="Club not found")
+
+    if roll_no <= 0:
+        raise HTTPException(status_code=422, detail="Invalid roll number")
 
 
     if len(why_join) < 20:

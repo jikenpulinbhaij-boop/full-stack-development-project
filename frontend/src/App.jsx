@@ -18,8 +18,8 @@ function App() {
   }, []);
 
 function addClub(name, category, seats, deadline) {
-    fetch(`${API_URL}/clubs?name=${name}&category=${category}&seats=${seats}&deadline=${deadline}`, {
-      method: "POST"
+    fetch(`${API_URL}/clubs?name=${name}&category=${category}&seats=${seats}&deadline=${deadline} 00:00:00`, {
+    method: "POST"
     })
       .then(async (response) => {
         const data = await response.json();

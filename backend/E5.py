@@ -5,7 +5,7 @@ import functions
 def apply_to_club(club_id, roll_no, why_join):
     session = Session(functions.engine)
 
-    application = functions.Applications(club_id=club_id, roll_no=roll_no, why_join=why_join, status="applied", applied_on=datetime.now())
+    application = functions.Applications(club_id=club_id, roll_no=roll_no, why_join=why_join, status="applied", applied_on=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     session.add(application)
     session.commit()
 

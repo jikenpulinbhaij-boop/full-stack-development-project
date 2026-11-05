@@ -11,7 +11,7 @@ class Clubs(Base):
     name = Column(String)
     category = Column(String)
     seats = Column(Integer)
-    deadline = Column(Integer)
+    deadline = Column(String)
     recruiting = Column(Integer)
 
 
