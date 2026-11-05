@@ -4,9 +4,11 @@ import functions
 #E1
 def get_all_clubs(category=None):
     session = Session(functions.engine)
-    clubs = session.query(functions.Clubs).filter(functions.Clubs.category == category).all()
+    if category is None:
+        clubs = session.query(functions.Clubs).all()
+    else:
+        clubs = session.query(functions.Clubs).filter(functions.Clubs.category == category).all()
     response = []
-
     for club in clubs:
         temp_club = {
             "id": club.id,
@@ -16,7 +18,7 @@ def get_all_clubs(category=None):
             "deadline": club.deadline,
             "recruiting": club.recruiting
         }
-        response.append(temp_club)
+    response.append(temp_club)
 
     session.close()
     return response
@@ -26,6 +28,11 @@ def get_club(id):
     session = Session(functions.engine)
 
     club = session.query(functions.Clubs).filter(functions.Clubs.id == id).first()
+
+    if club is None:         
+        session.close()       
+        return None           
+
     applications = session.query(functions.Applications).filter(functions.Applications.club_id == id).all()
 
     application_list = []

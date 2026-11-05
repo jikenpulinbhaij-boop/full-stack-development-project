@@ -21,3 +21,16 @@ def update_application_status(application_id, status):
     session.close()
 
     return response
+
+def get_selected_count(club_id):
+    session = Session(functions.engine)
+    count = session.query(functions.Applications).filter(functions.Applications.club_id == club_id, functions.Applications.status == "selected").count()
+    session.close()
+    return count
+
+
+def get_student_selected_count(roll_no):
+    session = Session(functions.engine)
+    count = session.query(functions.Applications).filter(functions.Applications.roll_no == roll_no, functions.Applications.status == "selected").count()
+    session.close()
+    return count

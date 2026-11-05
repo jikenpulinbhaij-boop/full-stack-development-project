@@ -17,7 +17,12 @@ def apply_to_club(club_id, roll_no, why_join):
         "status": application.status,
         "applied_on": application.applied_on
     }
-
     session.close()
     return response
     
+def get_active_application_count(roll_no):
+    session = Session(functions.engine)
+    applied = session.query(functions.Applications).filter(functions.Applications.roll_no == roll_no, functions.Applications.status == "applied").count()
+    shortlisted = session.query(functions.Applications).filter(functions.Applications.roll_no == roll_no, functions.Applications.status == "shortlisted").count()
+    session.close()
+    return applied + shortlisted

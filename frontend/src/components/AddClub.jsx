@@ -14,8 +14,8 @@ function AddClub({ onAdd }) {
         <option>technical</option>
         <option>cultural</option>
         <option>sports</option>
-        <option>workshop</option>
-        <option>seminar</option>
+        <option>social</option>
+        <option>literary</option>
       </select>
       Seats <input type="number" onChange={(e) => setSeats(e.target.value)} />
       Deadline <input type="date" onChange={(e) => setDeadline(e.target.value)} />

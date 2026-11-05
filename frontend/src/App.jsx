@@ -5,7 +5,7 @@ import AddClub from "./components/AddClub";
 import Clubitem from "./components/ClubItem";
 
 
-const API_URL = "http://127.0.0.1:8001";
+const API_URL = "http://127.0.0.1:8000";
 function App() {
   const [clubs, setClubs] = useState([]);
   const [applications, setApplications] = useState([]);
@@ -17,16 +17,21 @@ function App() {
       .then((data) => setClubs(data));
   }, []);
 
-
-  function addClub(name, category, seats, deadline) {
-    fetch(API_URL + "/clubs?name=" + name + "&category=" + category + "&seats=" + seats + "&deadline=" + deadline, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, category: category, seats: seats, deadline: deadline }),
+function addClub(name, category, seats, deadline) {
+    fetch(`${API_URL}/clubs?name=${name}&category=${category}&seats=${seats}&deadline=${deadline}`, {
+      method: "POST"
     })
-      .then(() => fetch(API_URL + "/clubs"))
-      .then((response) => response.json())
-      .then((data) => setClubs(data));
+      .then(async (response) => {
+        const data = await response.json();
+
+        if (!response.ok) {
+          console.log("API error:", data);
+          return;
+        }
+
+        setClubs([...clubs, data]);
+      })
+      .catch((error) => console.log("Fetch error:", error));
   }
 
 
@@ -37,17 +42,24 @@ function App() {
       .then((data) => setClubs(data));
   }
 
-
   function apply(id, whyJoin) {
-    fetch(API_URL + "/clubs/" + id + "/applications?roll_no=" + rollNo + "&why_join=" + whyJoin, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ roll_no: rollNo, why_join: whyJoin }),
+  fetch(API_URL + "/clubs/" + id + "/applications?roll_no=" + rollNo + "&why_join=" + whyJoin, {
+    method: "POST"
+  })
+    .then(async (response) => {
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.log("API error:", data);
+        return;
+      }
+
+      fetch(API_URL + "/clubs")
+        .then((response) => response.json())
+        .then((data) => setClubs(data));
     })
-      .then(() => fetch(API_URL + "/clubs"))
-      .then((response) => response.json())
-      .then((data) => setClubs(data));
-  }
+    .catch((error) => console.log("Fetch error:", error));
+}
 
 
   function showApplications(roll) {
@@ -58,19 +70,38 @@ function App() {
 
 
   function updateStatus(id, status, roll) {
-    fetch(API_URL + "/applications/" + id + "/status?status=" + status, { method: "PATCH" })
-      .then(() => showApplications(roll));
+  fetch(API_URL + "/applications/" + id + "/status?status=" + status, {
+    method: "PATCH"
+  })
+    .then(async (response) => {
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.log("API error:", data);
+        return;
+      }
+
+      showApplications(roll);
+    })
+    .catch((error) => console.log("Fetch error:", error));
+}
+
+function withdrawApplication(id, roll) {
+    fetch(`${API_URL}/applications/${id}/withdraw?roll_no=${roll}`, {
+      method: "PATCH"
+    })
+      .then(async (response) => {
+        const data = await response.json();
+
+        if (!response.ok) {
+          console.log("API error:", data);
+          return;
+        }
+
+        setApplications(applications.map((application) => (application.id === data.id ? data : application)));
+      })
+      .catch((error) => console.log("Fetch error:", error));
   }
-
-
-  function withdrawApplication(id, roll) {
-    fetch(API_URL + "/applications/" + id + "/withdraw", { method: "PATCH" })
-      .then(() => showApplications(roll))
-      .then(() => fetch(API_URL + "/clubs"))
-      .then((response) => response.json())
-      .then((data) => setClubs(data));
-  }
-
   return (
     <>
       Roll number <input onChange={(e) => setRollNo(e.target.value)} />
@@ -80,5 +111,4 @@ function App() {
     </>
   );
 }
-
 export default App;
