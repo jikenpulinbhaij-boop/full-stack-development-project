@@ -26,6 +26,10 @@ Update your own row at every check-in.
 | Day 2 | Sanghavi | working on main.py  |
 | Day 2 | Jiken | Starting on the frontend  |
 | Day 2 | Abhishek |Starting on the Frontend  |
+| Day 3 | Thanuja | Debuggin backend, updating the endpoints |
+| Day 3 | Sanghavi | Debuggin backend, updating the endpoints  |
+| Day 3 | Jiken | adding the more to the frontend, updating the endpoints   |
+| Day 3 | Abhishek |updating E9.py, working on frontend   |
 
 ## 2. Endpoint tracker
 
