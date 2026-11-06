@@ -46,7 +46,6 @@ Fill in the method and path from your PRD's endpoint table.
 | E7 |patch |/applications/{applications_id}/withdraw |roll_no | 200 |400,403,404,422  |
 | E8 | GET | /students | /{roll_no}/applications | 200| 422 |
 | E9 | GET |  /summary |NONE  | 200 |  |
-
 ## File Structure
 
 ```text
@@ -66,7 +65,6 @@ full-stack-development-project/
 │
 ├── frontend/
 │   ├── public/
-│   ├── node_modules/
 │   └── src/
 │       ├── components/
 │       │   ├── AddClub.jsx
@@ -75,6 +73,7 @@ full-stack-development-project/
 │       │   └── MyApplications.jsx
 │       │
 │       ├── App.jsx
+│       ├── main.jsx
 │       └── index.css
 │
 └── README.md
