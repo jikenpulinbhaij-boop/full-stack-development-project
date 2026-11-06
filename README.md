@@ -37,15 +37,43 @@ Fill in the method and path from your PRD's endpoint table.
 
 | # | Method  | path | Request Body | Success Code | Error Codes |
 |---|---|---|---|---|---|
-| E1 | GET | /clubs |  |  |  |
-| E2 | GET | /clubs/{clubs.id} | /{clubs.id} |  |  |
-| E3 |post  | /clubs |name , category ,seats,deadline  |  |  |
-| E4 | PATCH  | clubs/{club_id}/recruiting  | recruiting  |  |  |
-| E5 | POST | /clubs/{club_id}/applications | roll_no, why_join |  |  |
-| E6 | PATCH | /applications/{application_id}/status | status | |  |
-| E7 |patch |/applications/{applications_id}/withdraw |roll_no |  |  |
-| E8 | GET | /students | /{roll_no}/applications |  |  |
-| E9 | GET |  /summary |NONE  |  |  |
+| E1 | GET | /clubs | Optional: category |200  |422  |
+| E2 | GET | /clubs/{clubs.id} | /{clubs.id} | 200 | 404 |
+| E3 |post  | /clubs |name , category ,seats,deadline  | 201 | 422 |
+| E4 | PATCH  | clubs/{club_id}/recruiting  | recruiting  |200  |404,422  |
+| E5 | POST | /clubs/{club_id}/applications | roll_no, why_join |201  | 400,404,422 |
+| E6 | PATCH | /applications/{application_id}/status | status |200 |400,404,422  |
+| E7 |patch |/applications/{applications_id}/withdraw |roll_no | 200 |400,403,404,422  |
+| E8 | GET | /students | /{roll_no}/applications | 200| 422 |
+| E9 | GET |  /summary |NONE  | 200 |  |
+
+
+6. How to Run
+
+Backend
+
+Open a terminal and navigate to the backend folder:
+cd backend
+Install dependencies:
+pip install fastapi uvicorn sqlalchemy
+
+Start the FastAPI server:
+python -m uvicorn main:app --reload --port 8000
+
+Open the API documentation:
+Swagger UI: http://127.0.0.1:8000/docs
+
+Frontend
+
+Navigate to the frontend folder:
+cd frontend
+Install dependencies:
+npm install
+
+Start the React development server:
+npm run dev
+
+Open the local URL displayed in the terminal.
 
 ### flow of the Project Presentation 
 
