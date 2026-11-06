@@ -47,7 +47,10 @@ Fill in the method and path from your PRD's endpoint table.
 | E8 | GET | /students | /{roll_no}/applications | 200| 422 |
 | E9 | GET |  /summary |NONE  | 200 |  |
 
-##full-stack-development-project/
+## File Structure
+
+```text
+full-stack-development-project/
 │
 ├── backend/
 │   ├── E1_2_8.py
@@ -62,8 +65,8 @@ Fill in the method and path from your PRD's endpoint table.
 │   └── requirements.txt
 │
 ├── frontend/
-│   ├── node_modules/
 │   ├── public/
+│   ├── node_modules/
 │   └── src/
 │       ├── components/
 │       │   ├── AddClub.jsx
@@ -75,8 +78,7 @@ Fill in the method and path from your PRD's endpoint table.
 │       └── index.css
 │
 └── README.md
-
-
+```
 ## How to Run
 
 Backend
