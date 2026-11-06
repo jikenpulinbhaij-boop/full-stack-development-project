@@ -47,6 +47,35 @@ Fill in the method and path from your PRD's endpoint table.
 | E8 | GET | /students | /{roll_no}/applications | 200| 422 |
 | E9 | GET |  /summary |NONE  | 200 |  |
 
+##full-stack-development-project/
+│
+├── backend/
+│   ├── E1_2_8.py
+│   ├── E3.py
+│   ├── E4.py
+│   ├── E5.py
+│   ├── E6.py
+│   ├── E9.py
+│   ├── functions.py
+│   ├── main.py
+│   ├── recruitment.db
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── node_modules/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       │   ├── AddClub.jsx
+│       │   ├── ClubItem.jsx
+│       │   ├── ClubList.jsx
+│       │   └── MyApplications.jsx
+│       │
+│       ├── App.jsx
+│       └── index.css
+│
+└── README.md
+
 
 ## How to Run
 
