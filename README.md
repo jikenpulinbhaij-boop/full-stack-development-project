@@ -48,7 +48,7 @@ Fill in the method and path from your PRD's endpoint table.
 | E9 | GET |  /summary |NONE  | 200 |  |
 
 
-6. How to Run
+## How to Run
 
 Backend
 
